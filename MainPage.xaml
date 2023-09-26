@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:collectionViewScroll="clr-namespace:CollectionViewScroll"
+             x:Class="CollectionViewScroll.MainPage">
+    <Grid>
+        <CollectionView
+            x:Name="ItemsCollectionView"
+            Grid.Row="0"
+            IsGrouped="True">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="collectionViewScroll:ItemModelGroup">
+                    <Grid
+                        RowDefinitions="35,1"
+                        Padding="0,10,0,0"
+                        BackgroundColor="LightGray">
+                        <Label
+                            Grid.Row="0"
+                            Text="{Binding Name}"
+                            FontAttributes="Bold"
+                            Margin="0,5" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="collectionViewScroll:ItemModel">
+                    <Grid RowDefinitions="15,125,15,1">
+                        <Grid
+                            Grid.Row="1"
+                            RowDefinitions="Auto, Auto, *"
+                            ColumnDefinitions="120, *"
+                            ColumnSpacing="15">
+                            <BoxView
+                                Grid.Row="0"
+                                Grid.RowSpan="3"
+                                WidthRequest="120"
+                                HeightRequest="120"
+                                Color="Grey" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding Text}"
+                                FontAttributes="Bold" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding Price, StringFormat='{0:N2}'}"
+                                Margin="0,5" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Text="{Binding Description}"
+                                FontSize="12"
+                                FontAttributes="Italic"
+                                VerticalOptions="End" />
+                        </Grid>
+                        <BoxView HeightRequest="1" Grid.Row="3" BackgroundColor="Black" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Label
+            x:Name="Label"
+            Grid.Row="0"
+            TextColor="Red"
+            FontSize="20"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+    </Grid>
+</ContentPage>
